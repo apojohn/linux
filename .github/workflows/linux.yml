@@ -1,4 +1,4 @@
-name: Verificar IP Público e Abrir Porta de Teste
+name: Verificar IP Público, Abrir Porta de Teste e Aguardar Conexão
 
 on:
   push:
@@ -24,3 +24,10 @@ jobs:
       run: |
         nc -l 5151 &
         echo "Porta de teste 5151 aberta"
+
+    - name: Aguardar conexão
+      run: |
+        while ! nc -z localhost 5151; do
+          sleep 1
+        done
+        echo "Conexão estabelecida com sucesso!"
