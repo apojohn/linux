@@ -1,0 +1,18 @@
+name: Verificar IP Público
+
+on:
+  push:
+    branches:
+      - main  # ou o nome da sua branch principal
+
+jobs:
+  check_ip:
+    runs-on: ubuntu-latest  # Ambiente Linux
+
+    steps:
+    - uses: actions/checkout@v2  # Clona o repositório
+
+    - name: Verificar IP público
+      run: |
+        ip=$(curl -s ifconfig.me)
+        echo "O IP público é: $ip"
