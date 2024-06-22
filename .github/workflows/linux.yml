@@ -27,7 +27,5 @@ jobs:
 
     - name: Aguardar conexão
       run: |
-        while ! nc -z localhost 5151; do
-          sleep 1
-        done
-        echo "Conexão estabelecida com sucesso!"
+        sleep 5000
+        echo "Tempo de espera concluído"
