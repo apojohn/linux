@@ -1,4 +1,4 @@
-name: Verificar IP Público
+name: Verificar IP Público e Abrir Porta de Teste
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main  # ou o nome da sua branch principal
 
 jobs:
-  check_ip:
+  check_ip_and_open_port:
     runs-on: ubuntu-latest  # Ambiente Linux
 
     steps:
@@ -16,3 +16,11 @@ jobs:
       run: |
         ip=$(curl -s ifconfig.me)
         echo "O IP público é: $ip"
+
+    - name: Instalar Netcat (nc)
+      run: sudo apt-get install -y netcat
+
+    - name: Abrir porta de teste
+      run: |
+        nc -l 5151 &
+        echo "Porta de teste 5151 aberta"
