@@ -20,6 +20,9 @@ jobs:
     - name: Instalar Netcat (nc)
       run: sudo apt-get install -y netcat
 
+    - name: Abrir porta 5151 no firewall
+      run: sudo ufw allow 5151
+
     - name: Abrir porta de teste
       run: |
         nc -l 5151 &
