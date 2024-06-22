@@ -1,0 +1,9 @@
+version: 2.1
+jobs:
+  ping_ip:
+    docker:
+      - image: circleci/python:3.7
+    steps:
+      - run:
+          name: Ping IP
+          command: ping -c 10 34.176.135.249
