@@ -23,12 +23,11 @@ jobs:
     - name: Abrir porta 5151 no firewall
       run: sudo ufw allow 5151
 
-    - name: Abrir porta de teste
+    - name: Abrir porta de teste e aguardar conexão
       run: |
-        nc -l 5151 &
-        echo "Porta de teste 5151 aberta"
-
-    - name: Aguardar conexão
-      run: |
-        sleep 5000
-        echo "Tempo de espera concluído"
+        # Iniciar Netcat em um subshell para que o loop não seja bloqueado
+        ( nc -l 5151 & )
+        # Loop para manter o Netcat em execução
+        while true; do
+          sleep 5000  # Aguardar 5000 segundos (aproximadamente 1 hora e 23 minutos)
+        done
